@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concrete Strength Prediction</title>
+    <style>
+        body {
+            background-image: url("static/images/photo.jpg"); /* Set the background image */
+            background-size: cover; /* Cover the entire viewport */
+            color: #333; /* Set text color */
+            display: flex;
+            justify-content: center; /* Center content horizontally */
+            align-items: center; /* Center content vertically */
+            height: 140vh;
+            margin: 0;
+        }
+        
+        .container {
+            background-color: rgba(240, 233, 233, 0.9); /* Set background color of container */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow effect */
+            text-align: center; /* Center text within container */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center items horizontally */
+        }
+
+        form {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Align items to the start of the container */
+            width: 100%; /* Set form width to 100% */
+        }
+
+        /* Style for predicted price class */
+        .predicted-price {
+            color: #2ecc71; /* Set the color to green */
+            font-weight: bold; /* Make the text bold */
+            font-size: 1.2em; /* Increase the font size */
+        }
+
+        label {
+            margin-bottom: 5px; /* Add some bottom margin to label elements */
+            color: #990c0c; /* Set label text color */
+        }
+
+        input[type="text"] {
+            padding: 5px;
+            margin-bottom: 10px; /* Add some bottom margin to input elements */
+        }
+
+        button {
+            background-color: #2ecc71; /* Set button background color */
+            color: white; /* Set button text color */
+            padding: 10px 20px; /* Add padding to button */
+            border: none; /* Remove button border */
+            border-radius: 5px; /* Add border radius to button */
+            cursor: pointer; /* Add cursor pointer to button */
+            transition: background-color 0.3s; /* Add transition effect */
+        }
+
+        button:hover {
+            background-color: #27ae60; /* Change button background color on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div>
+            <h1>Concrete Strength Prediction</h1>
+        </div>
+        <form action="{{ url_for('concrete_strength') }}" method="post">
+            <!-- Input fields for various features -->
+            <label for="Cement">Cement Power:</label>
+            <input type="text" name="Cement" id="Cement" required>
+
+            <label for="Blast_Furnace_Slag">Blast_Furnace_Slag:</label>
+            <input type="text" id="Blast_Furnace_Slag" name="Blast_Furnace_Slag" required>
+
+
+            <label for="Fly_Ash">Fly_Ash:</label>
+            <input type="text" id="Fly_Ash" name="Fly_Ash" required>
+
+            <label for="Water">Water:</label>
+            <input type="text" id="Water" name="Water" required>
+
+            <label for="fc">Superplasticizer:</label>
+            <input type="text" id="Superplasticizer" name="Superplasticizer" required>
+
+            <label for="Coarse_Aggregate">Coarse_Aggregate:</label>
+            <input type="text" id="Coarse_Aggregate" name="Coarse_Aggregate" required>
+
+            <label for="Fine_Aggregate">Fine_Aggregate:</label>
+            <input type="text" id="Fine_Aggregate" name="Fine_Aggregate" required>
+
+            <label for="Age">Age:</label>
+            <input type="text" id="Age" name="Age" required>
+
+            <!-- Add more input fields for other features -->
+
+            <button type="submit">Predict Strength</button>
+        </form>
+
+    {% if prediction %}
+        <h2>Predicted concrete Strength:{{ prediction }}</h2>
+        <!-- <h2 style="color:rgb(65, 13, 163);">Predicted Price Class</h2>
+        <h2 style="background-color:powderblue;">Predicted Price Class</h2> -->
+        <!-- <p>{{ prediction }}</p> -->
+
+    {% endif %}
+</body>
+</html>
